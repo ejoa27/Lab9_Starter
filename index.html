@@ -102,7 +102,168 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    // Step 2
+    const logBtn = errorBtns[0];
+    logBtn.addEventListener('click', () => {
+      console.log("Console log");
+    });
+
+    const errorBtn = errorBtns[1];
+    errorBtn.addEventListener('click', () => {
+      console.error("This is an error");
+    });
+
+    const countBtn = errorBtns[2];
+    countBtn.addEventListener('click', () => {
+      console.count("count");
+    });
+
+    const warnBtn = errorBtns[3];
+    warnBtn.addEventListener('click', () => {
+      console.warn("Warning");
+    });
+
+    const assertBtn = errorBtns[4];
+    assertBtn.addEventListener('click', () => {
+      const a = 1;
+      const b = 0;
+      const reason = 'a is expected to be greater than y';
+      console.assert(a > b, {a, b, reason});
+      console.assert(a < b, {a, b, reason});
+    });
+
+    const clearBtn = errorBtns[5];
+    clearBtn.addEventListener('click', () => {
+      console.clear();
+    });
+
+    const dirBtn = errorBtns[6];
+    dirBtn.addEventListener('click', () => {
+      console.dir(document);
+    });
+
+    const dirxmlBtn = errorBtns[7];
+    dirxmlBtn.addEventListener('click', () => {
+      console.dirxml(document.getElementById("error-btns"));
+    });
+
+    const startBtn = errorBtns[8];
+    startBtn.addEventListener('click', () => {
+      console.group("Console start:");
+    });
+
+    const endBtn = errorBtns[9];
+    endBtn.addEventListener('click', () => {
+      console.groupEnd();
+    });
+
+    const tableBtn = errorBtns[10];
+    tableBtn.addEventListener('click', () => {
+      const scores = [
+        {
+           name: "Alex",
+           math: 90,
+           english: 85,
+           history: 80
+        },
+        {
+          name: "Bryan",
+          math: 80,
+          english: 83,
+          history: 82
+        },
+        {
+          name: "Caleb",
+          math: 92,
+          english: 95,
+          history: 91
+        }
+      ]
+      console.table(scores);
+    });
+
+    const startTimerBtn = errorBtns[11];
+    startTimerBtn.addEventListener('click', () => {
+      console.time("Timer");
+    });
+
+    const endTimer = errorBtns[12];
+    endTimer.addEventListener('click', () => {
+      console.timeEnd("Timer");
+    });
+
+    const traceTimer = errorBtns[13];
+    traceTimer.addEventListener('click', () => {
+      const firstFunction = () => {
+        secondFunction();
+      };
+      const secondFunction = () => {
+        thirdFunction();
+      };
+      const thirdFunction = () => {
+        console.trace("Console trace");
+      };
+      firstFunction();
+    });
+
+    const globalErrTimer = errorBtns[14];
+    globalErrTimer.addEventListener('click', () => {
+      funct();
+    });
+
+    window.onerror = function(message, url, line, col, error) {
+      alert(`Global error: ${message} at line ${line}, column ${col} of url ${url}`);
+    };
+
+    // Step 3
+    try {
+      console.log(errorBtns[16]);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      console.log("Out of index array");
+    }
+
+    try {
+      const JSONFail = JSON.parse('{"a":5, "b":6}');
+      if (!JSONFail["c"]) {
+        throw SyntaxError("c does does not exist");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
+    // Step 4
+    class customError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "Custom Error";
+      }
+    }
+
+    try {
+      throw new customError("This is a custom error");
+    } catch (err) {
+      if (err instanceof customError) {
+        console.log("Error name: " + err.name);
+        console.log("Error message: " + err.message);
+      } else {
+        console.log("Unknown error:");
+        console.log("Error message: " + err.message);
+      }
+    }
+
+    // Step 5
+                        
   </script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "0afd68c4bac142caa1095af27a4a2192"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+
 </body>
 
 </html>
